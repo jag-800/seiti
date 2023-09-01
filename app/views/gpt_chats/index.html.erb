@@ -1,0 +1,7 @@
+<div class="top">
+  <h3>ChatGPTに聞きたいことを入力してください。</h3>
+  <%= form_with(url: search_path, method: :get) do |form| %>
+    <%= form.text_field :query, size: 50 %>
+    <%= form.submit "検索" %>
+  <% end %>
+</div>

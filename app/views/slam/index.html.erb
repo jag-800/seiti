@@ -1,0 +1,39 @@
+<div class="container my-5">
+  <%= form_with url: search_path, method: :get, local: true, class: 'form-inline mb-3' do %>
+    <div class="form-group mr-2">
+      <%= label_tag :keyword, "検索キーワード", class: 'mr-2 text-primary' %>
+      <%= text_field_tag :keyword, nil, class: 'form-control' %>
+    </div>
+    <%= submit_tag "検索", class: 'btn btn-primary' %>
+  <% end %>
+
+  <%= link_to "chatGPT", gpt_chats_path %>
+  
+  <p class="text-secondary">検索キーワード: <%= params[:keyword] %></p>
+
+  <div class="bg-light rounded p-5">
+    <div class="border bg-white p-1">
+      <% if @image_urls %>
+        <p class="font-weight-bold text-secondary">イメージ</p>
+        <div class="row justify-content-center img-fluid rounded">
+          <div class="col-auto">
+            <% @image_urls.each do |url| %>
+              <%= link_to url, target: "_blank", class:"col-6 col-md-3 mb-4" do %>
+                <%= image_tag url, class: "fixed-size-image mb-3" %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      <% else %>
+        <p class="font-weight-bold text-danger">該当する画像が見つかりませんでした。</p>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<style>
+  .fixed-size-image {
+    width: 160px;
+    height: 90px;
+  }
+</style>
